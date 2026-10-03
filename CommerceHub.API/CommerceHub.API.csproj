@@ -13,4 +13,10 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.24.2-preview.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CommerceHub.Application\CommerceHub.Application.csproj" />
+    <ProjectReference Include="..\CommerceHub.Infrastructure\CommerceHub.Infrastructure.csproj" />
+    <ProjectReference Include="..\CommerceHub.Persistence\CommerceHub.Persistence.csproj" />
+  </ItemGroup>
+
 </Project>
