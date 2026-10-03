@@ -1,0 +1,17 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/CommerceHub.Tests/bin/Debug/net10.0
+/CommerceHub.Persistence/bin/Debug/net10.0
+/CommerceHub.Infrastructure/bin/Debug/net10.0
+/CommerceHub.Domain/bin/Debug/net10.0
+/CommerceHub.Infrastructure/obj
+/CommerceHub.Domain/obj
+/CommerceHub.Application/obj
+/CommerceHub.Application/bin/Debug/net10.0
+/CommerceHub.Persistence/obj
+/CommerceHub.Tests/obj
+/CommerceHub.API/bin/Debug/net10.0
+/CommerceHub.API/obj
