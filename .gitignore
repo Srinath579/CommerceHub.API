@@ -15,3 +15,9 @@
 /CommerceHub.Tests/obj
 /CommerceHub.API/bin/Debug/net10.0
 /CommerceHub.API/obj
+/CommerceHub.Application/bin/Release/net10.0
+/CommerceHub.API/bin/Release/net10.0
+/CommerceHub.Domain/bin/Release/net10.0
+/CommerceHub.Infrastructure/bin/Release/net10.0
+/CommerceHub.Persistence/bin/Release/net10.0
+/CommerceHub.Tests/bin/Release/net10.0
