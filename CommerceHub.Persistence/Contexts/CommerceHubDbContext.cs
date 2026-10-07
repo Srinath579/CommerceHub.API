@@ -1,4 +1,5 @@
-﻿using CommerceHub.Domain.Entities;
+﻿using CommerceHub.Application.Common;
+using CommerceHub.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace CommerceHub.Persistence.Contexts
 {
-    public class CommerceHubDbContext : DbContext
+    public class CommerceHubDbContext : DbContext, ICommerceHubDbContext
     {
         public CommerceHubDbContext(DbContextOptions<CommerceHubDbContext> options) : base(options)
         {
