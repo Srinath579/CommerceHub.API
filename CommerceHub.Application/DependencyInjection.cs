@@ -1,7 +1,10 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
+﻿using CommerceHub.Application.Common.Behaviors;
+using FluentValidation;
+using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace CommerceHub.Application
@@ -10,8 +13,17 @@ namespace CommerceHub.Application
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
-            // Registers all MediatR Commands, Queries, and Handlers in this assembly
-            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+            var assembly = Assembly.GetExecutingAssembly();
+
+            // 1. Register all MediatR Commands, Queries, and Handlers in this assembly and pipeline behaviors
+            services.AddMediatR(cfg =>
+            {
+                cfg.RegisterServicesFromAssembly(assembly);
+                cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+            });
+
+            // 2. Automatically register all AbstractValidator classes found in this assembly
+            services.AddValidatorsFromAssembly(assembly);
 
             return services;
         }

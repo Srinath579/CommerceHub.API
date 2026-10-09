@@ -3,6 +3,7 @@ using CommerceHub.Persistence.Contexts;
 using Scalar.AspNetCore;
 using CommerceHub.Application;
 using CommerceHub.Persistence;
+using CommerceHub.API.ExceptionHandling;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,9 @@ builder.Services.AddApplicationServices();
 // Bind the interface to the concrete EF Core implementation
 builder.Services.AddScoped<ICommerceHubDbContext>(provider => provider.GetRequiredService<CommerceHubDbContext>());
 
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddProblemDetails();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -28,6 +32,8 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
     app.MapScalarApiReference();
 }
+
+app.UseExceptionHandler();
 
 app.UseHttpsRedirection();
 
