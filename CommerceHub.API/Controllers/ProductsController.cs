@@ -1,4 +1,5 @@
 ﻿using CommerceHub.Application.Features.Products.Commands;
+using CommerceHub.Application.Features.Products.Queries.GetAllProducts;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -23,6 +24,15 @@ namespace CommerceHub.API.Controllers
             var productId = await _mediator.Send(command);
 
             return Ok(new { Id = productId, Message = "Product created successfully." });
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<ProductDto>>> GetAllProducts()
+        {
+            var query = new GetAllProductsQuery();
+            var products = await _mediator.Send(query);
+
+            return Ok(products);
         }
     }
 }

@@ -25,6 +25,14 @@ namespace CommerceHub.Application
             // 2. Automatically register all AbstractValidator classes found in this assembly
             services.AddValidatorsFromAssembly(assembly);
 
+            // 3. Register AutoMapper using the configAction delegate
+            services.AddAutoMapper(cfg =>
+            {
+                // This tells AutoMapper to scan the provided assembly for any classes 
+                // that inherit from Profile (like your ProductMappingProfile)
+                cfg.AddMaps(assembly);
+            });
+
             return services;
         }
     }
