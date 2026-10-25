@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using CommerceHub.Application.Common;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -21,13 +22,20 @@ namespace CommerceHub.Application.Features.Products.Queries.GetAllProducts
 
         public async Task<List<ProductDto>> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
         {
-            // 1. Fetch from database (AsNoTracking is faster for read-only queries)
-            var products = await _context.Products
-                .AsNoTracking()
-                .ToListAsync(cancellationToken);
+            //// 1. Fetch from database (AsNoTracking is faster for read-only queries)
+            //var products = await _context.Products
+            //    .AsNoTracking()
+            //    .ToListAsync(cancellationToken);
 
-            // 2. Map the List<Product> to a List<ProductDto>
-            return _mapper.Map<List<ProductDto>>(products);
+            //// 2. Map the List<Product> to a List<ProductDto>
+            //return _mapper.Map<List<ProductDto>>(products);
+
+            //Or
+
+            return await _context.Products
+            .AsNoTracking()
+            .ProjectTo<ProductDto>(_mapper.ConfigurationProvider)
+            .ToListAsync(cancellationToken);
         }
     }
 }
