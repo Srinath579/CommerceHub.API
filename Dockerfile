@@ -13,6 +13,10 @@ FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["CommerceHub.API/CommerceHub.API.csproj", "CommerceHub.API/"]
+COPY ["CommerceHub.Application/CommerceHub.Application.csproj", "CommerceHub.Application/"]
+COPY ["CommerceHub.Domain/CommerceHub.Domain.csproj", "CommerceHub.Domain/"]
+COPY ["CommerceHub.Infrastructure/CommerceHub.Infrastructure.csproj", "CommerceHub.Infrastructure/"]
+COPY ["CommerceHub.Persistence/CommerceHub.Persistence.csproj", "CommerceHub.Persistence/"]
 RUN dotnet restore "./CommerceHub.API/CommerceHub.API.csproj"
 COPY . .
 WORKDIR "/src/CommerceHub.API"

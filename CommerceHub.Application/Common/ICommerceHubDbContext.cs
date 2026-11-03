@@ -12,6 +12,7 @@ namespace CommerceHub.Application.Common
         DbSet<User> Users { get; }
         DbSet<Order> Orders { get; }
         DbSet<OrderItem> OrderItems { get; }
+        DbSet<Category> Categories { get; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }

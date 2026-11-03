@@ -12,7 +12,8 @@ namespace CommerceHub.Application.Common.Mappings
         public ProductMappingProfile()
         {
             // This tells AutoMapper: I want to map FROM Product TO ProductDto
-            CreateMap<Product, ProductDto>();
+            CreateMap<Product, ProductDto>()
+                .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name)); ;
         }
     }
 }
